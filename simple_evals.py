@@ -1,6 +1,5 @@
 import argparse
 import json
-import subprocess
 from datetime import datetime
 
 import pandas as pd
@@ -24,6 +23,7 @@ from .sampler.claude_sampler import ClaudeCompletionSampler, CLAUDE_SYSTEM_MESSA
 from .sampler.o_chat_completion_sampler import OChatCompletionSampler
 from .sampler.responses_sampler import ResponsesSampler
 from .simpleqa_eval import SimpleQAEval
+from .sampler.medisearch_sampler import MediSearchSampler
 
 
 def main():
@@ -63,6 +63,10 @@ def main():
     args = parser.parse_args()
 
     models = {
+        # MedISearch models
+        "medisearch": MediSearchSampler(
+            model="pro",
+        ),
         # Reasoning Models
         "o3": ResponsesSampler(
             model="o3-2025-04-16",
@@ -340,6 +344,8 @@ def main():
             try:
                 evals[eval_name] = get_evals(eval_name, args.debug)
             except Exception:
+                import traceback
+                print(traceback.format_exc())
                 print(f"Error: eval '{eval_name}' not found.")
                 return
     else:

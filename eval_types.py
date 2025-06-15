@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Any, Literal, overload
+from typing import Any
 
 Message = dict[str, Any]  # keys role, content
 MessageList = list[Message]
@@ -48,6 +48,7 @@ class SingleEvalResult:
     """
 
     score: float | None
+    # Python 3.12+: Use field(default_factory=dict) to avoid mutable default issues
     metrics: dict[str, float] = field(default_factory=dict)
     html: str | None = None
     convo: MessageList | None = None  # sampled conversation
