@@ -17,7 +17,7 @@ class MediSearchSampler(SamplerBase):
         *,
         model: str = "pro",
     ):
-        self.client = MediSearchClient(api_key="859fc63b-6152-4e29-9ea7-adbf9e99d0df", 
+        self.client = MediSearchClient(api_key="0b146290-ebcb-48d0-aec1-f2fa0cbc4893", 
                                        base_url="https://api.backend.medisearch.io")
         self.model = model
 
@@ -55,6 +55,7 @@ class MediSearchSampler(SamplerBase):
       """
       medisearch_messages = []
       current_role = None
+      print(message_list)
       for message in message_list:
           if message["role"] == current_role:
               medisearch_messages[-1] += "\n" + message["content"]

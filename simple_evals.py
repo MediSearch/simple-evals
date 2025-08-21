@@ -24,6 +24,7 @@ from .sampler.o_chat_completion_sampler import OChatCompletionSampler
 from .sampler.responses_sampler import ResponsesSampler
 from .simpleqa_eval import SimpleQAEval
 from .sampler.medisearch_sampler import MediSearchSampler
+from .sampler.medisearch_dr_sampler import MediSearchDeepReasonSampler
 
 
 def main():
@@ -66,6 +67,8 @@ def main():
         # MedISearch models
         "medisearch": MediSearchSampler(
             model="pro",
+        ),
+        "medisearch_dr": MediSearchDeepReasonSampler(
         ),
         # Reasoning Models
         "o3": ResponsesSampler(
